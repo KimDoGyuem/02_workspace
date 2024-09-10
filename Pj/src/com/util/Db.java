@@ -28,4 +28,20 @@ public class Db {
 			e.printStackTrace();
 		}
 	}
+	
+	static public boolean loginCheck(String id, String pw) {
+		String count="";
+		try {
+			result = st.executeQuery("select count(*) from cmember where c_id='"+id+"' and c_pw='"+pw+"'");
+			result.next();
+			count = result.getString("count(*)");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		if(count.equals("1")) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 }
